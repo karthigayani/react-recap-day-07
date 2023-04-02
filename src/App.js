@@ -1,6 +1,7 @@
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp, faChartLine, faCoins, faDollar, faSignal } from '@fortawesome/free-solid-svg-icons'
+import LinearProgress from '@mui/material/LinearProgress';
 function App() {
   // ---- js starts here ----
 
@@ -104,6 +105,8 @@ function SummaryBox({data}){
         {data.type === "money" ? "$" : null}
         {data.number}
         </h2>
+        {/* <LinearProgress variant="determinate" value={progress} /> */}
+        <LinearProgress variant="determinate" value={50} />
       <div className="summary-box-time-container">
         <p>{data.time}</p>
         <p>
