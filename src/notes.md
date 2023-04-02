@@ -25,4 +25,6 @@
 
 ### Adding font awesome
 
-google search -> font awesome react -> open first link -> copy the codes under the heading `Get started` enter the comments one-by-one in your terminal.
+- google search -> font awesome react -> open first link -> copy the codes under the heading `Get started` enter the comments one-by-one in your terminal.
+- import the particular icon
+- icons -> type the icon you want in search box -> then click on free -> choose the icon -> copy the codes from -> react -> Individual Import.
