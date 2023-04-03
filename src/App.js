@@ -10,7 +10,9 @@ import { styled } from '@mui/material/styles';
 //   CircularProgressProps,
 // } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-
+import { StackedChart } from './StackedChart';
+import { ToggleButtonOverview } from './ToggleButtonOverview';
+import React, { useState } from 'react'; 
 function App() {
   // ---- js starts here ----
 
@@ -33,6 +35,25 @@ function Dashboard(){
       {/* <SummaryBox /> */}
       <SummaryBoxList />
       <MonthlyProfits />
+      <Overview />
+    </div>
+  );
+}
+
+function Overview() {
+  const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const yearLabels = [2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023];
+  const [time, setTime] = useState('month'); // Lifting the state up
+  return(
+    <div className="overview-container">
+      <div className="overview-spec">
+        <div>
+          <h4 className="profit-box-heading">Overview of Sales Win/Lost</h4>
+          <p className="profit-box-sub-text">Comapred to last month sales.</p>
+        </div>
+        <ToggleButtonOverview time={time} setTime={setTime}/>
+      </div>
+      <StackedChart labels={time === "month" ? monthLabels : yearLabels }/>
     </div>
   );
 }
@@ -210,3 +231,6 @@ function MonthlyProfits(){
 }
 
 export default App;
+
+// Target
+// https://laravel.spruko.com/dashlead/Leftmenu-Icon-Light/index#
