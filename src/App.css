@@ -1,44 +1,89 @@
+:root{
+  --body-bg: hsl(228deg 42% 95%);
+  --bg-white: hsl(0deg 0% 100%);
+  --text-secondary-clr: hsl(214deg 17% 65%);
+  --text-sz-sm: 14px;
+  --text-sz-lg: 28px;
+  --root-gap: 8px;
+  --fw-500: 500;
+  --purple:rgb(135, 96, 251);
+  --orange:#eb6f33;
+  --green:#03c895;
+  --blue:#01b8ff;
+}
+
 body {
-  background: hsl(228deg 42% 95%);
+  background: var(--body-bg);
   padding: 24px;
   font-family: 'Roboto', sans-serif;
 }
 
-.summary-box-container {
-  background: hsl(0deg 0% 100%);
+.summary-box-container ,
+.profit-box-container {
+  background: var(--bg-white);
   /* height: 100px; */
   /* width: 300px; */
   padding: 16px;
 }
 
+.profit-box-container {
+  margin-top: 24px;
+}
+
+.profit-box-sub-text {
+color:var(--text-secondary-clr);
+margin: 0;
+margin-bottom: 16px;
+font-size: var(--text-sz-sm);
+}
+
+.profit-box-heading {
+  font-weight: var(--fw-500);
+  margin: 0;
+}
+
 .summary-box-time-container {
   display: flex;
   justify-content: space-between;
-  color: hsl(214deg 17.24% 65.88%);
+  color: var(--text-secondary-clr);
 }
 
 .summary-box-text {
   color: hsl(218.05deg 18.72% 42.94%);
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-sz-sm);
   margin-bottom: 4px;
 }
 
-.summary-box-number {
+.summary-box-number,
+.profit-box-number {
   color: hsl(212deg 22.73% 25.88%);
-  font-size: 30px;
+  font-size: var(--text-sz-lg);
   margin: 0;
   font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.summary-box-spec{
+.summary-box-spec,
+.profit-box-time-container {
   display: flex;
   justify-content: space-between;
 }
 
-/* .summary-box-time-container > p {
-  color: hsl(214deg 17.24% 65.88%)
-} */
+.profit-box-time-container > p:first-child{
+  color:var(--text-secondary-clr);
+}
+
+.summary-box-time-container > p ,
+.profit-box-time-container > p {
+  margin: 6px 0px;
+}
+
+.percent-box-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--root-gap));
+}
 
 /* .summary-box-list {
   display: flex;
@@ -48,7 +93,7 @@ body {
 
 .summary-box-list {
   display: grid;
-  gap: 24px;
+  gap: calc(3 * var(--root-gap));
   /* grid-template-columns: 1fr 2fr; */
   /* grid-template-columns: 1fr 3fr; */
   /* grid-template-columns: 1fr 1fr 1fr; */

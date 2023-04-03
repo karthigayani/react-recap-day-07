@@ -57,3 +57,14 @@
 ### mui Components usage in react app
 
 - google -> search -> mui.com -> open first link -> click on get started -> see LHS -> click on Components -> click on For eg: button -> choose the button style you want -> copy the particular element and paste in you react app where you want -> then at the above box you can see the tag sign<> -> click on it -> copy the import statement and paste it at the top of your folder. -> save and run the program.
+
+### shortcuts
+
+`ctrl + shift + p` -> wrap -> div/section/p...
+don't want to do means click `Esc`
+
+### Renaming symbol
+
+right click on the symbolname -> select Rename Symbol -> Enter the name you want
+
+### Applied :root variable concepts, applied calc

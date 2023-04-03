@@ -1,7 +1,16 @@
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp, faChartLine, faCoins, faDollar, faSignal } from '@fortawesome/free-solid-svg-icons'
-import LinearProgress from '@mui/material/LinearProgress';
+// import LinearProgress from '@mui/material/LinearProgress';
+
+import { styled } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+// import CircularProgress, {
+//   circularProgressClasses,
+//   CircularProgressProps,
+// } from '@mui/material/CircularProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+
 function App() {
   // ---- js starts here ----
 
@@ -23,6 +32,7 @@ function Dashboard(){
       <h1>Welcome to Dashlead 🎉🎊✨</h1>
       {/* <SummaryBox /> */}
       <SummaryBoxList />
+      <MonthlyProfits />
     </div>
   );
 }
@@ -35,9 +45,10 @@ function SummaryBoxList(){
       icon: faChartLine,
       text: "Number Of Sales",
       time: "Last Month",
-      iconColor: "rgb(135, 96, 251)",
+      iconColor: "var(--purple)",
       performance: "up",
-      type: "count"
+      type: "count",
+      linePercent:70,
     },
     {
       number: "12,897",
@@ -45,9 +56,10 @@ function SummaryBoxList(){
       icon: faCoins,
       text: "New Revenue",
       time: "Last Month",
-      iconColor: "#eb6f33",
+      iconColor: "var(--orange)",
       performance: "down",
-      type: "money"
+      type: "money",
+      linePercent:60,
     },
     {
       number: "11,234",
@@ -55,9 +67,10 @@ function SummaryBoxList(){
       icon: faDollar,
       text: "Total Cost",
       time: "Last Month",
-      iconColor: "#03c895",
+      iconColor: "var(--green)",
       performance: "down",
-      type: "money"
+      type: "money",
+      linePercent:50,
     },
     {
       number: "789",
@@ -65,9 +78,10 @@ function SummaryBoxList(){
       icon: faSignal,
       text: "Profit By Sale",
       time: "Last Month",
-      iconColor: "#01b8ff",
+      iconColor: "var(--blue)",
       performance: "up",
-      type: "money"
+      type: "money",
+      linePercent:40,
     }
   ];
 
@@ -80,6 +94,18 @@ function SummaryBoxList(){
     </div>
   );
 }
+
+const CustomLinearProgress = styled(LinearProgress)(({ theme , lineColor}) => ({
+  height: 6,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: "hsl(221deg 36% 91%)",
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    backgroundColor: lineColor,
+  },
+}));
+
+
 // Object destructuring
 function SummaryBox({data}){
   // const data = {
@@ -93,12 +119,17 @@ function SummaryBox({data}){
   //   icon: faChartLine,
   //   iconColor: "hsl(255deg 94% 68%)",
   // }
+
+  // const iconStyles = {color: data.iconColor};
   return (
     <div className="summary-box-container">
       <div className="summary-box-spec">
         <p className="summary-box-text">{data.text}</p>
         {/* <FontAwesomeIcon icon={faChartLine} /> */}
         {/* <FontAwesomeIcon style={{color:"deepskyblue"}} icon={faChartLine} /> */}
+
+        {/* <FontAwesomeIcon style={iconStyles} icon={data.icon} /> */}
+        {/* why we put double {}, because we are declaring the object style. So the other {} denotes object  */}
         <FontAwesomeIcon style={{color: data.iconColor}} icon={data.icon} />
       </div>
       <h2 className="summary-box-number">
@@ -106,7 +137,12 @@ function SummaryBox({data}){
         {data.number}
         </h2>
         {/* <LinearProgress variant="determinate" value={progress} /> */}
-        <LinearProgress variant="determinate" value={50} />
+        {/* <LinearProgress variant="determinate" value={50} /> */}
+        <CustomLinearProgress 
+          lineColor={ data.iconColor} 
+          variant="determinate" 
+          value={data.linePercent} 
+        />
       <div className="summary-box-time-container">
         <p>{data.time}</p>
         <p>
@@ -123,6 +159,54 @@ function SummaryBox({data}){
       </div>
     </div>
   );
+}
+
+function PercentProgress({data}){
+  // const data = {
+  //   time: "This month",
+  //   percent: 75,
+  //   lineColor: "purple"
+  // };
+  return (
+    <div>
+      <div className="profit-box-time-container">
+        <p>{data.time}</p>
+        <p>{data.percent}%</p>
+      </div>
+      <CustomLinearProgress 
+          lineColor={ data.lineColor} 
+          variant="determinate" 
+          value={data.percent} 
+        />
+    </div>
+  );
+}
+
+function MonthlyProfits(){
+  const profits = [
+    {
+      time: "This Month",
+      percent: 75,
+      lineColor: "var(--purple)"
+    },
+    {
+      time: "Last Month",
+      percent: 50,
+      lineColor: "var(--green)"
+    }
+  ];
+ return (
+  <div className="profit-box-container">
+    <h4 className="profit-box-heading">Monthly Profits</h4>
+    <p className="profit-box-sub-text">Excepteur sint occaecat cupidatat non proident.</p>
+    <h2 className="profit-box-number">$22,534</h2>
+    <div className="percent-box-container">
+      {profits.map((dt) => (
+        <PercentProgress data={dt}/>
+      ))}
+    </div>
+  </div>
+ );
 }
 
 export default App;
